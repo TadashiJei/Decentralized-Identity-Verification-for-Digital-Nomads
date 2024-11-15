@@ -10,7 +10,7 @@ This repository focuses on developing a decentralized identity verification syst
 - **Developer-Friendly Architecture**: Designed with modularity to integrate with various decentralized apps (dApps).
 
 ## Current Status
-- **Smart Contract Implementation**: Built using [blockchain platform or programming language details].
+- **Smart Contract Implementation**: Built using TON.
 - **Front-End Application**: Provides a user-friendly interface for identity creation and verification.
 - **Back-End Services**: Connects identity data with blockchain storage and verification protocols.
 
