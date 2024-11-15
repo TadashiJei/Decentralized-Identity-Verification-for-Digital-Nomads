@@ -5,7 +5,7 @@ This project aims to provide digital nomads and remote workers with a decentrali
 
 ## Overview
 
-As the gig economy and remote work grow, digital nomads face unique challenges in managing credentials and verifying identity in different jurisdictions. This project aims to address these challenges by providing a decentralized solution where users can create, store, and share verifiable credentials. This empowers digital nomads to control their identity information while facilitating trust with employers, landlords, government entities, and other stakeholders.
+This repository focuses on developing a decentralized identity verification system tailored for digital nomads. The platform aims to leverage blockchain technology to create secure, portable, and verifiable identities that can be easily shared and authenticated across borders and organizations.
 
 ## Project Objectives
 
