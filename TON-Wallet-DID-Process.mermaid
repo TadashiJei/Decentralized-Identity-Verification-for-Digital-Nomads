@@ -1,0 +1,30 @@
+graph TD
+    subgraph Preparation
+        A[Install TON Wallet] -->|Setup| B[Create TON Wallet]
+        B -->|Secure| C[Backup Seed Phrase]
+        C -->|Fund| D[Add TON Tokens]
+    end
+
+    subgraph DID Creation
+        D -->|Initialize| E[Create DID Document]
+        E -->|Configure| F[Set Public Keys]
+        F -->|Add| G[Authentication Methods]
+        G -->|Define| H[Service Endpoints]
+    end
+
+    subgraph Verification
+        H -->|Deploy| I[Publish to TON]
+        I -->|Generate| J[Proof of Control]
+        J -->|Request| K[Verification Process]
+        K -->|Complete| L[Verified DID]
+    end
+
+    subgraph Usage
+        L -->|Access| M[DID Services]
+        M -->|Present| N[Credentials]
+        N -->|Verify| O[Third-party Verification]
+    end
+
+    classDef process fill:#ffffff,stroke:#333,stroke-width:1px
+    classDef active fill:#f8f8f8,stroke:#333,stroke-width:2px
+    class A,B,C,D,E,F,G,H,I,J,K,L,M,N,O process
