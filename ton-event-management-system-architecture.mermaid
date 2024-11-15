@@ -1,0 +1,45 @@
+graph TD
+    A["Frontend Layer"]
+    B["Backend Layer"]
+    C["Blockchain Layer"]
+    D["Storage Layer"]
+
+    A -->|"API Calls"| B
+    B -->|"Smart Contract Interaction"| C
+    B -->|"Store Media/Metadata"| D
+
+    subgraph "Frontend Components"
+        A1["Web Interface"]
+        A2["Telegram Bot"]
+        A3["Mobile App"]
+        A1 --> A
+        A2 --> A
+        A3 --> A
+    end
+
+    subgraph "Core Features"
+        B1["Event Management"]
+        B2["NFT Certificate System"]
+        B3["Rewards System"]
+        B4["Analytics Engine"]
+        B --> B1
+        B --> B2
+        B --> B3
+        B --> B4
+    end
+
+    subgraph "TON Blockchain"
+        C1["Event Smart Contracts"]
+        C2["NFT Contracts"]
+        C3["Token Contracts"]
+        C --> C1
+        C --> C2
+        C --> C3
+    end
+
+    subgraph "Storage Solutions"
+        D1["IPFS"]
+        D2["TON Storage"]
+        D --> D1
+        D --> D2
+    end

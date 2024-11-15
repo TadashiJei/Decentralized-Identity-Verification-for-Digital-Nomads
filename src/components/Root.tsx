@@ -1,34 +1,30 @@
-import { TonConnectUIProvider } from '@tonconnect/ui-react';
+import { FC, useEffect, useState } from 'react'
+import { retrieveLaunchParams } from '@telegram-apps/sdk-react'
 
-import { App } from '@/components/App.tsx';
-import { ErrorBoundary } from '@/components/ErrorBoundary.tsx';
-import { publicUrl } from '@/helpers/publicUrl.ts';
+export const Root: FC = () => {
+  const [isInitialized, setIsInitialized] = useState(false)
 
-function ErrorBoundaryError({ error }: { error: unknown }) {
+  useEffect(() => {
+    const initApp = async () => {
+      try {
+        await retrieveLaunchParams()
+        setIsInitialized(true)
+      } catch (error) {
+        console.error('Failed to initialize app:', error)
+      }
+    }
+
+    initApp()
+  }, [])
+
+  if (!isInitialized) {
+    return <div>Loading...</div>
+  }
+
   return (
-    <div>
-      <p>An unhandled error occurred:</p>
-      <blockquote>
-        <code>
-          {error instanceof Error
-            ? error.message
-            : typeof error === 'string'
-              ? error
-              : JSON.stringify(error)}
-        </code>
-      </blockquote>
+    <div className="container mx-auto p-4">
+      <h1 className="text-2xl font-bold mb-4">Digital Nomad Identity Verification</h1>
+      {/*main app content here */}
     </div>
-  );
-}
-
-export function Root() {
-  return (
-    <ErrorBoundary fallback={ErrorBoundaryError}>
-      <TonConnectUIProvider
-        manifestUrl={publicUrl('tonconnect-manifest.json')}
-      >
-        <App/>
-      </TonConnectUIProvider>
-    </ErrorBoundary>
-  );
+  )
 }

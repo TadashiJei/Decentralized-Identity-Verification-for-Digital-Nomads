@@ -1,28 +1,31 @@
-import ReactDOM from 'react-dom/client';
-import { StrictMode } from 'react';
-import { retrieveLaunchParams } from '@telegram-apps/sdk-react';
+import { StrictMode } from "react"
+import { createRoot } from "react-dom/client"
+import { retrieveLaunchParams } from "@telegram-apps/sdk-react"
+import { Root } from "@/components/Root"
+import { EnvUnsupported } from "@/components/EnvUnsupported"
+import { init } from "@/init"
 
-import { Root } from '@/components/Root.tsx';
-import { EnvUnsupported } from '@/components/EnvUnsupported.tsx';
-import { init } from '@/init.ts';
+const container = document.getElementById("root") as HTMLElement
+const root = createRoot(container)
 
-import '@telegram-apps/telegram-ui/dist/styles.css';
-import './index.css';
-
-// Mock the environment in case, we are outside Telegram.
-import './mockEnv.ts';
-
-const root = ReactDOM.createRoot(document.getElementById('root')!);
-
-try {
-  // Configure all application dependencies.
-  init(retrieveLaunchParams().startParam === 'debug' || import.meta.env.DEV);
-
-  root.render(
-    <StrictMode>
-      <Root/>
-    </StrictMode>,
-  );
-} catch (e) {
-  root.render(<EnvUnsupported/>);
+const renderApp = async () => {
+  try {
+    await init()
+    const params = await retrieveLaunchParams()
+    
+    root.render(
+      <StrictMode>
+        {params ? <Root /> : <EnvUnsupported />}
+      </StrictMode>
+    )
+  } catch (error) {
+    console.error('Failed to initialize app:', error)
+    root.render(
+      <StrictMode>
+        <EnvUnsupported />
+      </StrictMode>
+    )
+  }
 }
+
+renderApp()
