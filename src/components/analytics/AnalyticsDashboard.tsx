@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
-import { useAnalytics } from '../../hooks/useAnalytics';
-import { Card, CardHeader, CardTitle, CardContent } from '../ui/card';
-import { Icon } from '@iconify/react';
+import React, { useEffect } from "react";
+import { useAnalytics } from "../../hooks/useAnalytics";
+import { Card, CardHeader, CardTitle, CardContent } from "../ui/card";
+import { Icon } from "@iconify/react";
 
 export const AnalyticsDashboard: React.FC = () => {
   const { eventAnalytics, organiserAnalytics, fetchAnalytics } = useAnalytics();
@@ -20,80 +20,110 @@ export const AnalyticsDashboard: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <h2 className="text-3xl font-bold mb-4">Analytics Dashboard</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <Card>
           <CardHeader>
-            <CardTitle className="text-sm font-medium text-gray-500">
+            <CardTitle className="text-lg font-medium text-gray-600">
               Total Events
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="flex items-center">
-              <Icon icon="heroicons:calendar" className="w-5 h-5 text-primary mr-2" />
-              <span className="text-2xl font-bold">{eventAnalytics.totalEvents}</span>
+              <Icon
+                icon="heroicons:calendar"
+                className="w-6 h-6 text-primary mr-2"
+              />
+              <span className="text-2xl font-bold">
+                {eventAnalytics.totalEvents}
+              </span>
             </div>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader>
-            <CardTitle className="text-sm font-medium text-gray-500">
+            <CardTitle className="text-lg font-medium text-gray-600">
               Total Participants
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="flex items-center">
-              <Icon icon="heroicons:users" className="w-5 h-5 text-primary mr-2" />
-              <span className="text-2xl font-bold">{eventAnalytics.totalParticipants}</span>
+              <Icon
+                icon="heroicons:users"
+                className="w-6 h-6 text-primary mr-2"
+              />
+              <span className="text-2xl font-bold">
+                {eventAnalytics.totalParticipants}
+              </span>
             </div>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader>
-            <CardTitle className="text-sm font-medium text-gray-500">
+            <CardTitle className="text-lg font-medium text-gray-600">
               Revenue Generated
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="flex items-center">
-              <Icon icon="heroicons:currency-dollar" className="w-5 h-5 text-primary mr-2" />
-              <span className="text-2xl font-bold">{eventAnalytics.revenueGenerated} TON</span>
+              <Icon
+                icon="heroicons:currency-dollar"
+                className="w-6 h-6 text-primary mr-2"
+              />
+              <span className="text-2xl font-bold">
+                {eventAnalytics.revenueGenerated} TON
+              </span>
             </div>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader>
-            <CardTitle className="text-sm font-medium text-gray-500">
+            <CardTitle className="text-lg font-medium text-gray-600">
               Certificates Issued
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="flex items-center">
-              <Icon icon="heroicons:academic-cap" className="w-5 h-5 text-primary mr-2" />
-              <span className="text-2xl font-bold">{organiserAnalytics.certificatesIssued}</span>
+              <Icon
+                icon="heroicons:academic-cap"
+                className="w-6 h-6 text-primary mr-2"
+              />
+              <span className="text-2xl font-bold">
+                {organiserAnalytics.certificatesIssued}
+              </span>
             </div>
           </CardContent>
         </Card>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <Card>
           <CardHeader>
-            <CardTitle>Popular Categories</CardTitle>
+            <CardTitle className="text-lg font-medium text-gray-600">
+              Popular Categories
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
               {eventAnalytics.popularCategories.map((category, index) => (
                 <div key={index} className="flex items-center justify-between">
-                  <span className="text-sm font-medium">{category.category}</span>
+                  <span className="text-base font-medium">
+                    {category.category}
+                  </span>
                   <div className="flex items-center">
-                    <span className="text-sm text-gray-500">{category.count} events</span>
-                    <div 
+                    <span className="text-base text-gray-600">
+                      {category.count} events
+                    </span>
+                    <div
                       className="ml-2 h-2 bg-primary rounded"
-                      style={{ 
-                        width: `${(category.count / eventAnalytics.totalEvents) * 100}px`
+                      style={{
+                        width: `${(
+                          (category.count / eventAnalytics.totalEvents) *
+                          100
+                        ).toFixed(0)}%`,
                       }}
                     />
                   </div>
@@ -105,17 +135,19 @@ export const AnalyticsDashboard: React.FC = () => {
 
         <Card>
           <CardHeader>
-            <CardTitle>Monthly Trends</CardTitle>
+            <CardTitle className="text-lg font-medium text-gray-600">
+              Monthly Trends
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
               {eventAnalytics.monthlyTrends.map((trend, index) => (
                 <div key={index} className="space-y-2">
-                  <div className="flex justify-between text-sm">
+                  <div className="flex justify-between text-base">
                     <span>{trend.month}</span>
                     <span>{trend.eventCount} events</span>
                   </div>
-                  <div className="flex justify-between text-sm text-gray-500">
+                  <div className="flex justify-between text-base text-gray-600">
                     <span>Participants</span>
                     <span>{trend.participantCount}</span>
                   </div>

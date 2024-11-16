@@ -1,34 +1,42 @@
-"use client"
+"use client";
 
-import { FC, useMemo } from 'react'
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
-import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert"
-import { AlertTriangle, Smartphone } from 'lucide-react'
+import { FC, useMemo } from "react";
+import { Card, CardHeader, CardTitle, CardContent } from "./ui/card";
+import { Alert, AlertTitle, AlertDescription } from "./ui/alert";
+import { AlertTriangle, Smartphone } from "lucide-react";
 
 export const EnvUnsupported: FC = () => {
   const [platform, isDark] = useMemo(() => {
-    let platform = 'device';
+    let platform = "device";
     let isDark = false;
 
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       const userAgent = window.navigator.userAgent.toLowerCase();
-      if (userAgent.includes('android')) {
-        platform = 'Android';
-      } else if (userAgent.includes('iphone') || userAgent.includes('ipad')) {
-        platform = 'iOS';
+      if (userAgent.includes("android")) {
+        platform = "Android";
+      } else if (userAgent.includes("iphone") || userAgent.includes("ipad")) {
+        platform = "iOS";
       }
 
-      isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      isDark =
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
     }
 
     return [platform, isDark];
   }, []);
 
   return (
-    <div className={`container mx-auto p-4 min-h-screen flex items-center justify-center ${isDark ? 'dark' : ''}`}>
+    <div
+      className={`container mx-auto p-4 min-h-screen flex items-center justify-center ${
+        isDark ? "dark" : ""
+      }`}
+    >
       <Card className="w-full max-w-md">
         <CardHeader>
-          <CardTitle className="text-2xl font-bold text-center">Environment Not Supported</CardTitle>
+          <CardTitle className="text-2xl font-bold text-center">
+            Environment Not Supported
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <Alert variant="destructive">
@@ -47,5 +55,5 @@ export const EnvUnsupported: FC = () => {
         </CardContent>
       </Card>
     </div>
-  )
-}
+  );
+};

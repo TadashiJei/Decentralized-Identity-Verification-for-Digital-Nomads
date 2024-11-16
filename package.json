@@ -14,6 +14,7 @@
     "predeploy": "npm run build"
   },
   "dependencies": {
+    "@iconify/react": "^5.0.2",
     "@radix-ui/react-alert-dialog": "^1.1.2",
     "@telegram-apps/sdk-react": "^2.0.11",
     "@telegram-apps/telegram-ui": "^2.1.5",
